@@ -117,7 +117,7 @@ namespace PostOffice
             get { return _destinationBranch; }
             set
             {
-                _departureBranch = value;
+                _destinationBranch = value;
                 OnPropertyChanged(nameof(Customers));
             }
         }
@@ -143,7 +143,7 @@ namespace PostOffice
                 using (var dbContext = new DataContext())
                 {
                     var destinationBranch = await dbContext.Branches.ToListAsync();
-                    DepartureBranch.Clear();
+                    DestinationBranch.Clear();
                     foreach (var branch in destinationBranch)
                     {
                         DestinationBranch.Add(branch);
@@ -190,7 +190,7 @@ namespace PostOffice
         }
 
 
-        // комментарий
+
         //private async Task LoadDestinationBranchAsync()
         //{
         //    try
