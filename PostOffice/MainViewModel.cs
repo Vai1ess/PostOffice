@@ -16,6 +16,7 @@ namespace PostOffice
             LoadCustomersAsync();
             LoadDepartureBranchAsync();
             LoadDestinationBranchAsync();
+            LoadParcelTypeAsync();
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -167,13 +168,13 @@ namespace PostOffice
         }
 
         private ObservableCollection<ParcelType> _parcelType= new ObservableCollection<ParcelType>();
-        public ObservableCollection<ParcelType> ParcelType
+        public ObservableCollection<ParcelType> ParcelTypes
         {
             get { return _parcelType; }
             set
             {
                 _parcelType = value;
-                OnPropertyChanged(nameof(Customers));
+                OnPropertyChanged(nameof(ParcelType));
             }
         }
 
@@ -184,34 +185,33 @@ namespace PostOffice
             set
             {
                 _selectedParcelType = value;
-                OnPropertyChanged(nameof(SelectedDestinationBranch));
-                CheckIfSameBranchSelected();
+                OnPropertyChanged(nameof(SelectedParcelType));
             }
         }
 
 
 
-        //private async Task LoadDestinationBranchAsync()
-        //{
-        //    try
-        //    {
-        //        using (var dbContext = new DataContext())
-        //        {
-        //            var destinationBranch = await dbContext.Branches.ToListAsync();
-        //            DepartureBranch.Clear();
-        //            foreach (var branch in destinationBranch)
-        //            {
-        //                DestinationBranch.Add(branch);
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show($"Ошибка при загрузке отделений отправлений: {ex.Message}", "Ошибка", MessageBoxButton.OK);
-        //        Console.WriteLine($"Ошибка при загрузке: {ex.Message}");
-        //        throw;
-        //    }
-        //}
+        private async Task LoadParcelTypeAsync()
+        {
+            try
+            {
+                using (var dbContext = new DataContext())
+                {
+                    var parcelType = await dbContext.ParcelTypes.ToListAsync();
+                    ParcelTypes.Clear();
+                    foreach (var typeParcel in parcelType)
+                    {
+                        ParcelTypes.Add(typeParcel);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке типов посылок: {ex.Message}", "Ошибка", MessageBoxButton.OK);
+                Console.WriteLine($"Ошибка при загрузке: {ex.Message}");
+                throw;
+            }
+        }
 
 
         protected virtual void OnPropertyChanged(string propertyName)

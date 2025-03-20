@@ -18,8 +18,8 @@ namespace PostOffice
     {
         public MainWindow()
         {
-            DataContext = new MainViewModel();
             InitializeComponent();
+            DataContext = new MainViewModel();
         }
     }
 }
