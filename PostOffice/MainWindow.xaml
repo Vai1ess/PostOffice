@@ -1,0 +1,104 @@
+﻿<Window x:Class="PostOffice.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PostOffice"
+        mc:Ignorable="d"
+        Title="Parcel Creation" Width="1400" Height="600">
+    <Window.Resources>
+        <Style x:Key="Button" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10"
+                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Viewbox Stretch="Uniform">
+        <Grid Width="1400" Height="600">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="1385">
+                <Image Source="Image\RP_Pochta.jpg" Height="100" />
+                <Button Content="Отделения" Background="#2254d4" Foreground="White" Style="{StaticResource Button}" Height="30" Padding="5,2" Margin="5,0" Width="71"/>
+                <Button Content="Клиенты" Background="#2254d4" Foreground="White" Style="{StaticResource Button}" Height="30" Padding="5,2" Margin="5,0" Width="59"/>
+                <Button Content="Сотрудники" Background="#2254d4" Foreground="White" Style="{StaticResource Button}" Height="30" Padding="5,2" Margin="5,0" Width="79"/>
+                <Button Content="Посылки" Background="#2254d4" Foreground="White" Style="{StaticResource Button}" Height="30" Padding="5,2" Margin="5,0" Width="64"/>
+                <Button Content="Виды статусов посылок" Background="#2254d4" Foreground="White" Style="{StaticResource Button}" Height="30" Padding="5,2" Margin="5,0" Width="137"/>
+                <Button Content="Отслеживание посылок" Background="#2254d4" Foreground="White" Style="{StaticResource Button}" Height="30" Padding="5,2" Margin="5,0" Width="140"/>
+                <Button Content="Типы посылок" Background="#2254d4" Foreground="White" Style="{StaticResource Button}" Height="30" Padding="5,2" Width="86"/>
+            </StackPanel>
+
+            <Label Content="Выбор получателя посылки" Margin="42,74,985,4" Grid.Column="1"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Получатель:" Margin="5"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedRecipient}" DisplayMemberPath="FullName" Margin="5"/>
+
+            <!--  New Customer  -->
+            <Label Grid.Row="2" Grid.Column="0" Content="Добавить нового заказчика" Margin="5"/>
+
+            <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5">
+                <Label Content="Имя:"/>
+                <TextBox Width="100" Text="{Binding Client.FirstName}" />
+                <Label Content="Фамилия:"/>
+                <TextBox Width="100" Text="{Binding NewCustomer.LastName}" />
+                <Label Content="Адрес:"/>
+                <TextBox Width="100" Text="{Binding NewCustomer.Address}" />
+                <Label Content="Город:"/>
+                <TextBox Width="100" Text="{Binding NewCustomer.City}" />
+                <Label Content="State:"/>
+                <TextBox Width="100" Text="{Binding NewCustomer.State}" />
+                <Label Content="ZipCode:"/>
+                <TextBox Width="100" Text="{Binding NewCustomer.ZipCode}" />
+                <Label Content="Номер телефона:"/>
+                <TextBox Width="100" Text="{Binding NewCustomer.PhoneNumber}" />
+                <Label Content="Email:"/>
+                <TextBox Width="100" Text="{Binding NewCustomer.Email}" />
+                <Button Content="Добавить заказчика" Background="#2254d4" Foreground="White" Style="{StaticResource Button}" Command="{Binding AddCustomerCommand}" Margin="5" Height="17" Width="129" />
+            </StackPanel>
+
+            <Label Grid.Row="4" Grid.Column="0" Content="Отделение отправления:" Margin="5"/>
+            <ComboBox Grid.Row="4" Grid.Column="1" ItemsSource="{Binding DepartureBranch}" SelectedItem="{Binding SelectedDepartureBranch}" DisplayMemberPath="FullValue" Margin="5" />
+
+            <Label Grid.Row="5" Grid.Column="0" Content="Отделение назначения:" Margin="5"/>
+            <ComboBox Grid.Row="5" Grid.Column="1" ItemsSource="{Binding DestinationBranch}" SelectedItem="{Binding SelectedDestinationBranch}" DisplayMemberPath="FullValue" Margin="5"/>
+
+            <Label Grid.Row="6" Grid.Column="0" Content="Тип посылки:" Margin="5"/>
+            <ComboBox Grid.Row="6" Grid.Column="1" ItemsSource="{Binding ParcelTypes}" SelectedItem="{Binding SelectedParcelType}" DisplayMemberPath="FullParcelType" Margin="5"/>
+
+            <Label Grid.Row="7" Grid.Column="0" Content="Вес посылки:" Margin="5"/>
+            <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Weight, Mode=TwoWay}" Margin="5"/>
+
+            <Label Grid.Row="8" Grid.Column="0" Content="Размеры посылки:" Margin="5"/>
+            <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding Dimensions, Mode=TwoWay}" Margin="5"/>
+
+            <Label Grid.Row="9" Grid.Column="0" Content="Страховая сумма:" Margin="5"/>
+            <TextBox Grid.Row="9" Grid.Column="1" Text="{Binding InsuranceAmount, Mode=TwoWay}" Margin="5"/>
+
+            <Button Grid.Row="10" Grid.Column="1" Content="Создать заказ" Background="#2254d4" Foreground="White" Style="{StaticResource Button}" Command="{Binding CreateParcelCommand}" Margin="426,5,554,124" Grid.RowSpan="2"/>
+        </Grid>
+    </Viewbox>
+</Window>
