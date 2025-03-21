@@ -40,18 +40,15 @@ namespace PostOffice
                 Email = viewModel.NewClientEmail
             };
 
-            // Добавляем клиента в базу данных
             try
             {
-                using (var dbContext = new DataContext()) // Или PostOfficeContext, если вы используете его
+                using (var dbContext = new DataContext()) 
                 {
                     dbContext.Clients.Add(newClient);
                     await dbContext.SaveChangesAsync();
 
-                    // Опционально: обновите список клиентов в ComboBox
                     await viewModel.LoadCustomersAsync();
 
-                    // Опционально: очистите TextBox'ы
                     viewModel.NewClientName = "";
                     viewModel.NewClientSurname = "";
                     viewModel.NewClientAddress = "";
