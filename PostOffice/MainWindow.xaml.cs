@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using PostOffice.Data;
+using PostOffice.Models;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -20,6 +22,51 @@ namespace PostOffice
         {
             InitializeComponent();
             DataContext = new MainViewModel();
+        }
+
+        private async void AddClientButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = (MainViewModel)DataContext; // Получаем ViewModel
+
+            // Создаем новый объект Client
+            var newClient = new Client
+            {
+                Name = viewModel.NewClientName,
+                Surname = viewModel.NewClientSurname,
+                Address = viewModel.NewClientAddress,
+                City = viewModel.NewClientCity,
+                ZipCode = viewModel.NewClientZipCode,
+                PhoneNumber = viewModel.NewClientPhoneNumber,
+                Email = viewModel.NewClientEmail
+            };
+
+            // Добавляем клиента в базу данных
+            try
+            {
+                using (var dbContext = new DataContext()) // Или PostOfficeContext, если вы используете его
+                {
+                    dbContext.Clients.Add(newClient);
+                    await dbContext.SaveChangesAsync();
+
+                    // Опционально: обновите список клиентов в ComboBox
+                    await viewModel.LoadCustomersAsync();
+
+                    // Опционально: очистите TextBox'ы
+                    viewModel.NewClientName = "";
+                    viewModel.NewClientSurname = "";
+                    viewModel.NewClientAddress = "";
+                    viewModel.NewClientCity = "";
+                    viewModel.NewClientZipCode = "";
+                    viewModel.NewClientPhoneNumber = "";
+                    viewModel.NewClientEmail = "";
+
+                    MessageBox.Show("Клиент успешно добавлен!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при добавлении клиента: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

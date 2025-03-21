@@ -42,7 +42,7 @@ namespace PostOffice
             }
         }
 
-        private async Task LoadCustomersAsync()
+        public async Task LoadCustomersAsync()
         {
             try
             {
@@ -212,6 +212,87 @@ namespace PostOffice
                 throw;
             }
         }
+
+
+        // код для задания функционала кнопке добавления пользователей
+        private string _newClientName;
+    public string NewClientName
+    {
+        get { return _newClientName; }
+        set
+        {
+            _newClientName = value;
+            OnPropertyChanged(nameof(NewClientName));
+        }
+    }
+
+    private string _newClientSurname;
+    public string NewClientSurname
+    {
+        get { return _newClientSurname; }
+        set
+        {
+            _newClientSurname = value;
+            OnPropertyChanged(nameof(NewClientSurname));
+        }
+    }
+
+    private string _newClientAddress;
+    public string NewClientAddress
+    {
+        get { return _newClientAddress; }
+        set
+        {
+            _newClientAddress = value;
+            OnPropertyChanged(nameof(NewClientAddress));
+        }
+    }
+
+     private string _newClientCity;
+    public string NewClientCity
+    {
+        get { return _newClientCity; }
+        set
+        {
+            _newClientCity = value;
+            OnPropertyChanged(nameof(NewClientCity));
+        }
+    }
+
+     private string _newClientZipCode;
+    public string NewClientZipCode
+    {
+        get { return _newClientZipCode; }
+        set
+        {
+            _newClientZipCode = value;
+            OnPropertyChanged(nameof(NewClientZipCode));
+        }
+    }
+
+     private string _newClientPhoneNumber;
+    public string NewClientPhoneNumber
+    {
+        get { return _newClientPhoneNumber; }
+        set
+        {
+            _newClientPhoneNumber = value;
+            OnPropertyChanged(nameof(NewClientPhoneNumber));
+        }
+    }
+
+     private string _newClientEmail;
+    public string NewClientEmail
+    {
+        get { return _newClientEmail; }
+        set
+        {
+            _newClientEmail = value;
+            OnPropertyChanged(nameof(NewClientEmail));
+        }
+    }
+
+
 
 
         protected virtual void OnPropertyChanged(string propertyName)

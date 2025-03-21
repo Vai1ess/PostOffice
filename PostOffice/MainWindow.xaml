@@ -62,22 +62,20 @@
 
             <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5">
                 <Label Content="Имя:"/>
-                <TextBox Width="100" Text="{Binding Client.FirstName}" />
+                <TextBox Text="{Binding NewClientName, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="5" />
                 <Label Content="Фамилия:"/>
-                <TextBox Width="100" Text="{Binding NewCustomer.LastName}" />
+                <TextBox Text="{Binding NewClientSurname, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="5" />
                 <Label Content="Адрес:"/>
-                <TextBox Width="100" Text="{Binding NewCustomer.Address}" />
+                <TextBox Text="{Binding NewClientAddress, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="5" />
                 <Label Content="Город:"/>
-                <TextBox Width="100" Text="{Binding NewCustomer.City}" />
-                <Label Content="State:"/>
-                <TextBox Width="100" Text="{Binding NewCustomer.State}" />
+                <TextBox Text="{Binding NewClientCity, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="5" />
                 <Label Content="ZipCode:"/>
-                <TextBox Width="100" Text="{Binding NewCustomer.ZipCode}" />
+                <TextBox Text="{Binding NewClientZipCode, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="5" />
                 <Label Content="Номер телефона:"/>
-                <TextBox Width="100" Text="{Binding NewCustomer.PhoneNumber}" />
+                <TextBox Text="{Binding NewClientPhoneNumber, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="5" />
                 <Label Content="Email:"/>
-                <TextBox Width="100" Text="{Binding NewCustomer.Email}" />
-                <Button Content="Добавить заказчика" Background="#2254d4" Foreground="White" Style="{StaticResource Button}" Command="{Binding AddCustomerCommand}" Margin="5" Height="17" Width="129" />
+                <TextBox Text="{Binding NewClientEmail, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="5" />
+                <Button Content="Добавить заказчика" Background="#2254d4" Foreground="White" Style="{StaticResource Button}" Command="{Binding AddCustomerCommand}" Margin="5" Height="17" Width="129" Click="AddClientButton_Click" />
             </StackPanel>
 
             <Label Grid.Row="4" Grid.Column="0" Content="Отделение отправления:" Margin="5"/>
