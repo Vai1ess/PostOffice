@@ -6,7 +6,27 @@
         xmlns:local="clr-namespace:PostOffice.Windows"
         mc:Ignorable="d"
         Title="TypesStatusesParcels" Height="450" Width="800">
-    <Grid>
-        
+    <Viewbox>
+        <Grid Width="800" Height="450">
+        <TabControl>
+            <TabItem Header="Типы Посылок">
+                <DataGrid x:Name="ParcelTypesDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Margin="10">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding IdParcelType}" Width="SizeToHeader"/>
+                        <DataGridTextColumn Header="Название" Binding="{Binding TypeName}" Width="*"/>
+                        <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Статусы Посылок">
+                <DataGrid x:Name="ParcelStatusesDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Margin="10">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding IdParcelStatuses}" Width="SizeToHeader"/>
+                        <DataGridTextColumn Header="Название" Binding="{Binding StatusName}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
     </Grid>
+        </Viewbox>
 </Window>

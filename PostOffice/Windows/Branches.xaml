@@ -6,7 +6,17 @@
         xmlns:local="clr-namespace:PostOffice.Windows"
         mc:Ignorable="d"
         Title="Branches" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <Viewbox Stretch="Uniform">
+        <Grid Width="800" Height="450">
+            <DataGrid x:Name="BranchesDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Margin="10">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding IdBranch}" Width="SizeToHeader"/>
+                    <DataGridTextColumn Header="Адрес" Binding="{Binding Address}" Width="*" />
+                    <DataGridTextColumn Header="Город" Binding="{Binding City}" Width="*" />
+                    <DataGridTextColumn Header="Индекс" Binding="{Binding ZipCode}" Width="SizeToHeader" />
+                    <DataGridTextColumn Header="Телефон" Binding="{Binding PhoneNumber}" Width="SizeToHeader" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Viewbox>
 </Window>

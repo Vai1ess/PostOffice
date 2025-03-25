@@ -6,7 +6,20 @@
         xmlns:local="clr-namespace:PostOffice.Windows"
         mc:Ignorable="d"
         Title="Parcels" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <Viewbox Stretch="Uniform">
+        <Grid Width="800" Height="450">
+            <DataGrid x:Name="ParcelsDataGrid" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding IdParcel}" Width="SizeToHeader"/>
+                    <DataGridTextColumn Header="Отправитель" Binding="{Binding IdSenderNavigation.Name}" Width="*" />
+                    <DataGridTextColumn Header="Получатель" Binding="{Binding IdRecipientNavigation.Name}" Width="*" />
+                    <DataGridTextColumn Header="Тип" Binding="{Binding IdParcelTypeNavigation.TypeName}" Width="*"/>
+                    <DataGridTextColumn Header="Статус" Binding="{Binding IdParcelStatusNavigation.StatusName}" Width="*" />
+                    <DataGridTextColumn Header="Стоимость" Binding="{Binding ShippingCost}" Width="SizeToHeader" />
+                    <DataGridTextColumn Header="Вес" Binding="{Binding Weight}" Width="SizeToHeader" />
+                    <DataGridTextColumn Header="Габариты" Binding="{Binding Dimensions}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Viewbox>
 </Window>

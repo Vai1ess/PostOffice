@@ -26,9 +26,9 @@ namespace PostOffice.Windows
 
         private async void AddClientButton_Click(object sender, RoutedEventArgs e)
         {
-            var viewModel = (MainViewModel)DataContext; // Получаем ViewModel
+            var viewModel = (MainViewModel)DataContext; 
 
-            // Создаем новый объект Client
+
             var newClient = new Client
             {
                 Name = viewModel.NewClientName,
@@ -64,6 +64,44 @@ namespace PostOffice.Windows
             {
                 MessageBox.Show($"Ошибка при добавлении клиента: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+
+        private void BranchesButton_Click(object sender, RoutedEventArgs e)
+        {
+            Branches branchesWindow = new Branches();
+            branchesWindow.Show();
+        }
+
+        private void ClientsButton_Click(object sender, RoutedEventArgs e)
+        {
+            Clients clientsWindow = new Clients();
+            clientsWindow.Show();
+        }
+
+        private void EmployeesButton_Click(object sender, RoutedEventArgs e)
+        {
+            Employees employeesWindow = new Employees();
+            employeesWindow.Show();
+        }
+
+        private void ParcelsButton_Click(object sender, RoutedEventArgs e)
+        {
+            Parcels parcelsWindow = new Parcels();
+            parcelsWindow.Show();
+        }
+
+
+        private void ParcelsTrackingButton_Click(object sender, RoutedEventArgs e)
+        {
+            ParcelsTracking parcelTrackingWindow = new ParcelsTracking();
+            parcelTrackingWindow.Show();
+        }
+
+        private void TypesStatusesParcelsButton_Click(object sender, RoutedEventArgs e)
+        {
+            TypesStatusesParcels parcelTypesStatusesWindow = new TypesStatusesParcels();
+            parcelTypesStatusesWindow.Show();
         }
     }
 }
